@@ -34,15 +34,16 @@ module.exports = function (grunt) {
 			}
 		},
 		karma: {
-			unit: {
+			options: {
 				configFile: 'karma.conf.js'
 			},
+			unit: {
+				singleRun: true
+			},
 			manual: {
-				configFile: 'karma.conf.js',
-				options: {
-					browsers: ['Chrome'],
-					singleRun: false
-				}
+				logLevel: 'DEBUG'
+			}
+		},
 		protractor: {
 			options: {
 				configFile: 'protractor.conf.js'
