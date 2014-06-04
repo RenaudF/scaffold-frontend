@@ -43,6 +43,19 @@ module.exports = function (grunt) {
 					browsers: ['Chrome'],
 					singleRun: false
 				}
+		protractor: {
+			options: {
+				configFile: 'protractor.conf.js'
+			},
+			e2e: {
+				options: {
+					keepAlive: true
+				}
+			},
+			manual: {
+				options: {
+					debug: true
+				}
 			}
 		},
 		jshint: {
@@ -72,11 +85,11 @@ module.exports = function (grunt) {
 			},
 			src: {
 				files: ['app/**/*.js'],
-				tasks: ['jshint:src', 'karma:unit']
+				tasks: ['jshint:src', 'karma:unit', 'protractor:e2e']
 			},
 			test: {
 				files: ['test/**/*.js'],
-				tasks: ['jshint:test', 'karma:unit']
+				tasks: ['jshint:test', 'karma:unit', 'protractor:e2e']
 			},
 		},
 		requirejs: {
@@ -125,10 +138,11 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-contrib-requirejs');
 	grunt.loadNpmTasks('grunt-contrib-connect');
 	grunt.loadNpmTasks('grunt-karma');
+	grunt.loadNpmTasks('grunt-protractor-runner');
 
 	// Default task.
 	grunt.registerTask('default', ['jshint', 'karma:unit', 'clean', 'requirejs', 'concat', 'uglify']);
 	grunt.registerTask('preview', ['connect:development']);
 	grunt.registerTask('preview-live', ['default', 'connect:production']);
-	grunt.registerTask('test', ['karma:manual']);
+	grunt.registerTask('test', ['karma:manual', 'protractor:manual']);
 };

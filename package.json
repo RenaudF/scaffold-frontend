@@ -15,6 +15,9 @@
       "url": "https://github.com/danheberden/gith/blob/master/LICENSE-MIT"
     }
   ],
+  "scripts": {
+    "install": "node node_modules/grunt-protractor-runner/node_modules/protractor/bin/webdriver-manager update"
+  },
   "devDependencies": {
     "grunt-contrib-jshint": "~0.1.1",
     "grunt-contrib-concat": "~0.1.2",
@@ -27,6 +30,9 @@
     "grunt": "~0.4.1",
     "karma-script-launcher": "~0.1.0",
     "karma-firefox-launcher": "~0.1.0",
+    "chai-as-promised": "~4.1.1",
+    "chai": "~1.9.1",
+    "grunt-protractor-runner": "~1.0.0",
     "karma-chrome-launcher": "~0.1.0",
     "karma-phantomjs-launcher": "~0.1.0",
     "karma-mocha": "~0.1",
