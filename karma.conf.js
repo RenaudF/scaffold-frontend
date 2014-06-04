@@ -13,9 +13,9 @@ module.exports = function (config) {
 		files: [
 			{pattern: 'bower_components/**/*.js', included: false},
 			{pattern: 'app/**/*.js', included: false},
-			{pattern: 'test/**/*Spec.js', included: false},
 			//'test/example.test.js'
-			 'test/test-main.js'
+			{pattern: 'test/**/*unit.js', included: false},
+			 'test/unit-main.js'
 		],
 
 		// list of files to exclude

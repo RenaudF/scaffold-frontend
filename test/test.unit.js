@@ -3,6 +3,7 @@ define(['config'], function (config) {
 	describe('Give it some context', function () {
 		describe('maybe a bit more context here', function () {
 			it('should work with chai', function () {
+				assert.equal(config.test, 'test');
 				expect(config.test).to.equal('test');
 				config.test.should.equal('test');
 			});
