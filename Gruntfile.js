@@ -142,7 +142,7 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-protractor-runner');
 
 	// Default task.
-	grunt.registerTask('default', ['jshint', 'karma:unit', 'clean', 'requirejs', 'concat', 'uglify']);
+	grunt.registerTask('default', ['jshint', 'karma:unit', 'protractor:e2e', 'clean', 'requirejs', 'concat', 'uglify']);
 	grunt.registerTask('preview', ['connect:development']);
 	grunt.registerTask('preview-live', ['default', 'connect:production']);
 	grunt.registerTask('test', ['karma:manual', 'protractor:manual']);
