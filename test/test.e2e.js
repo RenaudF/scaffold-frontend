@@ -1,8 +1,9 @@
+/*global browser, By */
 var driver = browser.driver;
 
 before(function(done){
 	driver.get('http://localhost:8000/index.htm').then(done);
-})
+});
 
 var chai = require('chai');
 var chaiAsPromised = require('chai-as-promised');
@@ -39,6 +40,6 @@ describe('assert syntax', function() {
 		var heading = driver.findElement(By.tagName('h1'));
 		heading.getText().then(function(text){
 			assert.equal(text, 'Running!');
-		})
+		});
 	});
 });

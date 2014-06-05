@@ -13,13 +13,15 @@
 	"browser": true,
 	"expr": true,
 	"predef": [
-		"_",
+		"assert",
 		"expect",
 		"describe",
 		"it",
+		"before",
+		"after",
 		"require",
 		"define",
 		"requirejs",
-		"sinon"
+		"console"
 	]
 }
