@@ -1,16 +1,21 @@
-/*global sinon */
-define(['config'], function (config) {
-	describe('Give it some context', function () {
-		describe('maybe a bit more context here', function () {
-			it('should work with chai', function () {
-				assert.equal(config.test, 'test');
-				expect(config.test).to.equal('test');
-				config.test.should.equal('test');
-			});
-			it("should work with sinon", function () {
-				var spy = sinon.spy();
-				spy.should.not.have.been.called;
-			});
+// Define your unit tests in requirejs modules
+// You can inject any module from your app within the tests.
+define(['libs/d3/d3', 'config'], function (d3, config) {
+	describe('Testing environment', function () {
+		it('should work with chai', function () {
+			assert.equal('test', 'test');
+			expect('test').to.equal('test');
+			('test').should.equal('test');
+		});
+		it("should work with sinon", function () {
+			var spy = sinon.spy();
+			spy.should.not.have.been.called;
+		});
+		it('should find modules', function(){
+			config.should.exist;
+		});
+		it('should find dependencies', function(){
+			d3.should.exist;
 		});
 	});
 });
