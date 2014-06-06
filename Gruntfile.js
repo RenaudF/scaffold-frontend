@@ -138,11 +138,21 @@ module.exports = function (grunt) {
 						];
 					}
 				}
+			},
+			coverage: {
+				options:{
+					base: 'frontend/coverage/',
+					port: 8002,
+					keepalive: true
+				}
+			}
 		},
 		open: {
 			preview: {
 				path: 'http://localhost:<%= connect.development.options.port %>'
 			},
+			coverage:{
+				path: 'http://localhost:<%= connect.coverage.options.port %>'
 			}
 		}
 	});
@@ -164,4 +174,5 @@ module.exports = function (grunt) {
 	grunt.registerTask('preview', ['open:preview', 'connect:development']);
 	grunt.registerTask('preview-live', ['default', 'open:preview', 'connect:production']);
 	grunt.registerTask('test', ['karma:manual', 'connect:test', 'protractor:manual']);
+	grunt.registerTask('coverage', ['open:coverage', 'connect:coverage']);
 };
