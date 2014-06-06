@@ -21,6 +21,13 @@ module.exports = function (config) {
 			'app/**/*.js': 'coverage'
 		},
 
+		coverageReporter: {
+			reporters: [
+				{type : 'text'},
+				{type: 'html', dir: 'coverage/'}
+			]
+		},
+
 		// test results reporter to use
 		// possible values: 'dots', 'progress', 'junit', 'growl', 'coverage'
 		reporters: ['spec', 'coverage'],
