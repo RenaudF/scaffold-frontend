@@ -1,9 +1,6 @@
 /*global browser, By */
 var driver = browser.driver;
 
-before(function(done){
-	driver.get('http://localhost:8000/index.htm').then(done);
-});
 
 var chai = require('chai');
 var chaiAsPromised = require('chai-as-promised');
@@ -32,6 +29,9 @@ describe('asynchronous should syntax', function() {
 		var heading = driver.findElement(By.tagName('h1'));
 		heading.getText().should.eventually.eql('Running!');
 	});
+before(function(){
+	driver.get('http://localhost:'+browser.params.port);
+});
 });
 
 var assert = chai.assert;

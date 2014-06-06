@@ -46,7 +46,12 @@ module.exports = function (grunt) {
 		},
 		protractor: {
 			options: {
-				configFile: 'protractor.conf.js'
+				configFile: 'protractor.conf.js',
+				args: {
+					params: {
+						port: '<%= connect.test.options.port %>'
+					}
+				}
 			},
 			e2e: {
 				options: {
@@ -104,6 +109,13 @@ module.exports = function (grunt) {
 			}
 		},
 		connect: {
+			test: {
+				options: {
+					base: 'frontend/',
+					port: 8001,
+					middleware: '<%= connect.production.options.middleware %>'
+				}
+			},
 			development: {
 				options: {
 					keepalive: true
@@ -142,8 +154,8 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-protractor-runner');
 
 	// Default task.
-	grunt.registerTask('default', ['jshint', 'karma:unit', 'protractor:e2e', 'clean', 'requirejs', 'concat', 'uglify']);
 	grunt.registerTask('preview', ['connect:development']);
 	grunt.registerTask('preview-live', ['default', 'connect:production']);
-	grunt.registerTask('test', ['karma:manual', 'protractor:manual']);
+	grunt.registerTask('default', ['jshint', 'karma:unit', 'clean', 'requirejs', 'concat', 'uglify', 'connect:test', 'protractor:e2e']);
+	grunt.registerTask('test', ['karma:manual', 'connect:test', 'protractor:manual']);
 };
