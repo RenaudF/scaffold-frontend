@@ -138,6 +138,11 @@ module.exports = function (grunt) {
 						];
 					}
 				}
+		},
+		open: {
+			preview: {
+				path: 'http://localhost:<%= connect.development.options.port %>'
+			},
 			}
 		}
 	});
@@ -150,12 +155,13 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-contrib-requirejs');
 	grunt.loadNpmTasks('grunt-contrib-connect');
+	grunt.loadNpmTasks('grunt-open');
 	grunt.loadNpmTasks('grunt-karma');
 	grunt.loadNpmTasks('grunt-protractor-runner');
 
 	// Default task.
-	grunt.registerTask('preview', ['connect:development']);
-	grunt.registerTask('preview-live', ['default', 'connect:production']);
 	grunt.registerTask('default', ['jshint', 'karma:unit', 'clean', 'requirejs', 'concat', 'uglify', 'connect:test', 'protractor:e2e']);
+	grunt.registerTask('preview', ['open:preview', 'connect:development']);
+	grunt.registerTask('preview-live', ['default', 'open:preview', 'connect:production']);
 	grunt.registerTask('test', ['karma:manual', 'connect:test', 'protractor:manual']);
 };
