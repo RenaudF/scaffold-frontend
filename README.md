@@ -56,7 +56,7 @@ you to debug. A coverage report is generated and can be accessed by
 launching `grunt preview` and going to `localhost:8000/coverage`.
 
 More tests can be added to the test folder but to be loaded in the
-test runnner their name must end in `'Spec.js'`.
+test runnner their name must end in `'unit.js'`.
 
 ## Deploying your application on a server
 
@@ -65,6 +65,6 @@ the only pieces required to run the application in its built
 state is running `grunt`.
 
 If you're using a webserver like apache or nginx, you'll want
-to create a redirect from `/bower_components/requirejs/require.js` to
+to create a redirect from `/frontend/libs/requirejs/require.js` to
 `/dist/require.js`. (*Note: this is exactly what `grunt
 preview-live` does*)
