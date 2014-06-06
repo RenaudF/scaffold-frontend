@@ -12,7 +12,7 @@ module.exports = function (grunt) {
 			'<%= pkg.author %>\n * Licensed <%= pkg.license %> */\n',
 		// Task configuration.
 		clean: {
-			files: ['dist']
+			files: ['frontend/dist']
 		},
 		concat: {
 			options: {
@@ -20,8 +20,8 @@ module.exports = function (grunt) {
 				stripBanners: true
 			},
 			dist: {
-				src: ['bower_components/requirejs/require.js', '<%= concat.dist.dest %>'],
-				dest: 'dist/require.js'
+				src: ['frontend/libs/requirejs/require.js', '<%= concat.dist.dest %>'],
+				dest: 'frontend/dist/require.js'
 			}
 		},
 		uglify: {
@@ -30,7 +30,7 @@ module.exports = function (grunt) {
 			},
 			dist: {
 				src: '<%= concat.dist.dest %>',
-				dest: 'dist/require.min.js'
+				dest: 'frontend/dist/require.min.js'
 			}
 		},
 		karma: {
@@ -71,13 +71,19 @@ module.exports = function (grunt) {
 				},
 				src: 'Gruntfile.js'
 			},
-			app: {
+			frontend_app: {
 				options: {
-					jshintrc: 'app/.jshintrc'
+					jshintrc: 'frontend/app/.jshintrc'
 				},
-				src: ['app/**/*.js']
+				src: ['frontend/app/**/*.js']
 			},
-			test: {
+			frontend_test: {
+				options: {
+					jshintrc: 'frontend/test/.jshintrc'
+				},
+				src: ['frontend/test/**/*.js']
+			},
+			e2e_test: {
 				options: {
 					jshintrc: 'test/.jshintrc'
 				},
@@ -89,20 +95,24 @@ module.exports = function (grunt) {
 				files: 'Gruntfile.js',
 				tasks: ['jshint:gruntfile']
 			},
-			src: {
-				files: ['app/**/*.js'],
-				tasks: ['jshint:src', 'karma:unit', 'protractor:e2e']
+			frontend_app: {
+				files: ['frontend/app/**/*.js'],
+				tasks: ['jshint:frontend_app', 'karma:unit', 'connect:test', 'protractor:e2e']
 			},
-			test: {
+			frontend_test: {
+				files: ['frontend/test/**/*.js'],
+				tasks: ['jshint:frontend_test', 'karma:unit']
+			},
+			e2e_test: {
 				files: ['test/**/*.js'],
-				tasks: ['jshint:test', 'karma:unit', 'protractor:e2e']
-			},
+				tasks: ['jshint:e2e_test', 'connect:test', 'protractor:e2e']
+			}
 		},
 		requirejs: {
 			compile: {
 				options: {
 					name: 'main',
-					mainConfigFile: 'app/main.js',
+					mainConfigFile: 'frontend/app/main.js',
 					out: '<%= concat.dist.dest %>',
 					optimize: 'none'
 				}
@@ -118,18 +128,20 @@ module.exports = function (grunt) {
 			},
 			development: {
 				options: {
+					base: 'frontend/',
 					keepalive: true
 				}
 			},
 			production: {
 				options: {
+					base: 'frontend/',
 					keepalive: true,
 					port: 8000,
 					middleware: function (connect, options) {
 						return [
 							// rewrite requirejs to the compiled version
 							function (req, res, next) {
-								if (req.url === '/bower_components/requirejs/require.js') {
+								if (req.url === '/libs/requirejs/require.js') {
 									req.url = '/dist/require.min.js';
 								}
 								next();
@@ -149,7 +161,7 @@ module.exports = function (grunt) {
 		},
 		open: {
 			preview: {
-				path: 'http://localhost:<%= connect.development.options.port %>'
+				path: 'http://localhost:<%= connect.production.options.port %>'
 			},
 			coverage:{
 				path: 'http://localhost:<%= connect.coverage.options.port %>'

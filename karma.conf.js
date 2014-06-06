@@ -4,14 +4,14 @@
 module.exports = function (config) {
 	config.set({
 		// base path, that will be used to resolve files and exclude
-		basePath: '.',
+		basePath: 'frontend/',
 
 		// frameworks to use
 		frameworks: ['requirejs','mocha-debug', 'mocha', 'sinon-chai'],
 
 		// list of files / patterns to load in the browser
 		files: [
-			{pattern: 'bower_components/**/*.js', included: false},
+			{pattern: 'libs/**/*.js', included: false},
 			{pattern: 'app/**/*.js', included: false},
 			{pattern: 'test/**/*unit.js', included: false},
 			 'test/unit-main.js'
