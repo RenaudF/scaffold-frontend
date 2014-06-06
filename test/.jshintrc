@@ -18,10 +18,12 @@
 		"describe",
 		"it",
 		"before",
+		"beforeAll",
 		"after",
+		"afterAll",
 		"require",
-		"define",
-		"requirejs",
-		"console"
+		"console",
+		"browser",
+		"By"
 	]
 }

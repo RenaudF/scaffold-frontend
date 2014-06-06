@@ -1,6 +1,3 @@
-/*global browser, By */
-
-
 var Q = require('q');
 var chai = require('chai');
 var chaiAsPromised = require('chai-as-promised');
