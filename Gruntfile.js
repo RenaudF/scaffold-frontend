@@ -147,7 +147,7 @@ module.exports = function (grunt) {
 			development: {
 				options: {
 					base: 'frontend/',
-					port: '<%= connect.development.options.port %>',
+					port: '<%= connect.production.options.port %>',
 					keepalive: true
 				}
 			},
