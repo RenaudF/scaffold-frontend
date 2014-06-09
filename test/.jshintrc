@@ -13,8 +13,6 @@
 	"browser": true,
 	"expr": true,
 	"predef": [
-		"assert",
-		"expect",
 		"describe",
 		"it",
 		"before",

@@ -53,8 +53,9 @@ module.exports = function (grunt) {
 						var chaiAsPromised = require('chai-as-promised');
 						chai.use(chaiAsPromised);
 
-						var assert = chai.assert;
-						var expect = chai.expect;
+						/* exported assert, expect */
+						var assert = chai.assert; //jshint ignore:line
+						var expect = chai.expect; //jshint ignore:line
 						chai.should();
 					}
 				},
