@@ -9,7 +9,8 @@ bower install
 
 Note: If you don't have `npm` installed, make sure you have
 [node](http://nodejs.com) installed. If you don't have bower,
-`npm install -g bower`.
+`npm install -g bower`. You will also need a version of java
+installed if you want to run the end to end selenium tests.
 
 The above steps will download all the required software to
 build and run this app.
