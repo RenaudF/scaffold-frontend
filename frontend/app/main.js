@@ -1,5 +1,5 @@
 require.config({
-	baseUrl: 'app',
+	baseUrl: '.',
 	paths: {
 		"libs": "../libs"
 	}
