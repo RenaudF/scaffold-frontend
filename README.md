@@ -48,7 +48,7 @@ modules. Past that, well, the world is your oyster.
 The test directory uses `mocha` as a testing framework. Unit tests
 are ran using the `karma` test runner. `chai` and `sinon` are available
 for assertions, spies and other usefull testing stuff. `protractor`
-will be used for end to end testing but hasn't been included yet.
+is being used for end to end testing.
 
 Tests are ran automatically when files under watch are modified. You
 can also run the tests manually using `grunt test` which will allow
@@ -66,5 +66,5 @@ state is running `grunt`.
 
 If you're using a webserver like apache or nginx, you'll want
 to create a redirect from `/frontend/libs/requirejs/require.js` to
-`/dist/require.js`. (*Note: this is exactly what `grunt
+`/frontend/dist/require.js`. (*Note: this is exactly what `grunt
 preview-live` does*)
