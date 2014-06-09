@@ -44,6 +44,23 @@ module.exports = function (grunt) {
 				logLevel: 'DEBUG'
 			}
 		},
+		mochaTest: {
+			unit: {
+				options: {
+					reporter: 'spec',
+					require: function(){
+						var chai = require('chai');
+						var chaiAsPromised = require('chai-as-promised');
+						chai.use(chaiAsPromised);
+
+						var assert = chai.assert;
+						var expect = chai.expect;
+						chai.should();
+					}
+				},
+				src: ['backend/test/**/*.js']
+			}
+		},
 		protractor: {
 			options: {
 				configFile: 'protractor.conf.js',
@@ -180,12 +197,13 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-contrib-connect');
 	grunt.loadNpmTasks('grunt-open');
 	grunt.loadNpmTasks('grunt-karma');
+	grunt.loadNpmTasks('grunt-mocha-test');
 	grunt.loadNpmTasks('grunt-protractor-runner');
 
 	// Default task.
-	grunt.registerTask('default', ['jshint', 'karma:unit', 'clean', 'requirejs', 'concat', 'uglify', 'connect:test', 'protractor:e2e']);
+	grunt.registerTask('default', ['jshint', 'mochaTest:unit', 'karma:unit', 'clean', 'requirejs', 'concat', 'uglify', 'connect:test', 'protractor:e2e']);
 	grunt.registerTask('preview', ['open:preview', 'connect:development']);
 	grunt.registerTask('preview-live', ['default', 'open:preview', 'connect:production']);
-	grunt.registerTask('test', ['karma:manual', 'connect:test', 'protractor:manual']);
+	grunt.registerTask('test', ['mochaTest:unit', 'karma:manual', 'connect:test', 'protractor:manual']);
 	grunt.registerTask('coverage', ['open:coverage', 'connect:coverage']);
 };

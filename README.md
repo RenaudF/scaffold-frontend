@@ -45,7 +45,8 @@ modules. Past that, well, the world is your oyster.
 
 ## Tests
 
-The test directory uses `mocha` as a testing framework. Unit tests
+All tests are written using `mocha` as a testing framework.
+Backend unit tests are ran with mocha directly. Frontend unit tests
 are ran using the `karma` test runner. `chai` and `sinon` are available
 for assertions, spies and other usefull testing stuff. `protractor`
 is being used for end to end testing.
@@ -54,6 +55,7 @@ Tests are ran automatically when files under watch are modified. You
 can also run the tests manually using `grunt test` which will allow
 you to debug. A coverage report is generated and can be accessed by
 launching `grunt preview` and going to `localhost:8000/coverage`.
+No coverage report is available for backend code yet.
 
 More tests can be added to the test folder but to be loaded in the
 test runnner their name must end in `'unit.js'`.
