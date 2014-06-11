@@ -47,17 +47,7 @@ module.exports = function (grunt) {
 		mochaTest: {
 			unit: {
 				options: {
-					reporter: 'spec',
-					require: function(){
-						var chai = require('chai');
-						var chaiAsPromised = require('chai-as-promised');
-						chai.use(chaiAsPromised);
-
-						/* exported assert, expect */
-						var assert = chai.assert; //jshint ignore:line
-						var expect = chai.expect; //jshint ignore:line
-						chai.should();
-					}
+					reporter: 'spec'
 				},
 				src: ['backend/test/**/*.js']
 			}
