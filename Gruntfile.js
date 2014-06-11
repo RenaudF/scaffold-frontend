@@ -101,6 +101,18 @@ module.exports = function (grunt) {
 				},
 				src: ['frontend/test/**/*.js']
 			},
+			backend_app: {
+				options: {
+					jshintrc: '.jshintrc'
+				},
+				src: ['backend/app/**/*.js']
+			},
+			backend_test: {
+				options: {
+					jshintrc: 'backend/test/.jshintrc'
+				},
+				src: ['backend/test/**/*.js']
+			},
 			e2e_test: {
 				options: {
 					jshintrc: 'test/.jshintrc'
@@ -120,6 +132,14 @@ module.exports = function (grunt) {
 			frontend_test: {
 				files: ['frontend/test/**/*.js'],
 				tasks: ['jshint:frontend_test', 'karma:unit']
+			},
+			backend_app: {
+				files: ['backend/app/**/*.js'],
+				tasks: ['jshint:backend', 'mochaTest:unit', 'connect:test', 'protractor:e2e']
+			},
+			backend_test: {
+				files: ['backend/test/**/*.js'],
+				tasks: ['jshint:backend_test', 'mochaTest:unit']
 			},
 			e2e_test: {
 				files: ['test/**/*.js'],

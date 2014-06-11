@@ -10,5 +10,8 @@
 	"unused": true,
 	"boss": true,
 	"eqnull": true,
+	"expr": true,
+	"strict": true,
+	"globalstrict": true,
 	"node": true
 }

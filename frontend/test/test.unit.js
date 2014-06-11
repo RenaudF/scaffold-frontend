@@ -1,3 +1,5 @@
+'use strict';
+
 // Define your unit tests in requirejs modules
 // You can inject any module from your app within the tests.
 define(['libs/d3/d3', 'config'], function (d3, config) {

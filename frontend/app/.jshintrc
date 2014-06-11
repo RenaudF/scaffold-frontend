@@ -10,6 +10,13 @@
 	"unused": true,
 	"boss": true,
 	"eqnull": true,
+	"expr": true,
+	"strict": true,
+	"globalstrict": true,
 	"browser": true,
-	"predef": ["require","define", "alert", "console"]
+	"devel": true,
+	"predef": [
+		"require",
+		"define"
+	]
 }

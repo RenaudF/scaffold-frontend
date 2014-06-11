@@ -10,8 +10,10 @@
 	"unused": true,
 	"boss": true,
 	"eqnull": true,
-	"browser": true,
 	"expr": true,
+	"strict": true,
+	"globalstrict": true,
+	"node": true,
 	"predef": [
 		"describe",
 		"it",
@@ -19,8 +21,6 @@
 		"beforeAll",
 		"after",
 		"afterAll",
-		"require",
-		"console",
 		"browser",
 		"By"
 	]

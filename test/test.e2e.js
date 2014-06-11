@@ -1,3 +1,5 @@
+'use strict';
+
 // Unlike unit tests in karma, the e2e tests in protractor run on the server.
 // As such you can decide directly which testing libraries you want to use.
 var Q = require('q');
