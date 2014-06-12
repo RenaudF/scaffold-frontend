@@ -4,7 +4,14 @@ module.exports = function (config) {
 		basePath: 'frontend/',
 
 		// frameworks to use
-		frameworks: ['requirejs','mocha-debug', 'mocha', 'sinon-chai'],
+		frameworks: [
+			'requirejs',
+			'mocha-debug',
+			'mocha',
+			'chai',
+			'chai-as-promised',
+			'sinon-chai'
+		],
 
 		// list of files / patterns to load in the browser
 		files: [
