@@ -1,8 +1,21 @@
 {
-  "name": "scaffold",
+  "name": "scaffold-frontend",
+  "version": "0.0.0",
+  "authors": [
+    "Renaud Fontana <sirgzu@hotmail.com>"
+  ],
+  "license": "MIT",
   "dependencies": {
     "requirejs": "~2.1.5",
-    "q": "~1.0.0",
+    "q": "~1.0.1",
     "d3": "~3.4.8"
-  }
+  },
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "libs",
+    "test",
+    "tests"
+  ]
 }

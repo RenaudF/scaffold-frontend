@@ -13,13 +13,10 @@
 	"expr": true,
 	"strict": true,
 	"globalstrict": true,
-	"node": true,
+	"browser": true,
+	"devel": true,
 	"predef": [
-		"describe",
-		"it",
-		"before",
-		"beforeAll",
-		"after",
-		"afterAll"
+		"require",
+		"define"
 	]
 }

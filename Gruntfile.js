@@ -12,7 +12,7 @@ module.exports = function (grunt) {
 			'<%= pkg.author %>\n * Licensed <%= pkg.license %> */\n',
 		// Task configuration.
 		clean: {
-			files: ['frontend/dist']
+			files: ['dist']
 		},
 		concat: {
 			options: {
@@ -20,8 +20,8 @@ module.exports = function (grunt) {
 				stripBanners: true
 			},
 			dist: {
-				src: ['frontend/libs/requirejs/require.js', '<%= concat.dist.dest %>'],
-				dest: 'frontend/dist/require.js'
+				src: ['libs/requirejs/require.js', '<%= concat.dist.dest %>'],
+				dest: 'dist/require.js'
 			}
 		},
 		uglify: {
@@ -30,7 +30,7 @@ module.exports = function (grunt) {
 			},
 			dist: {
 				src: '<%= concat.dist.dest %>',
-				dest: 'frontend/dist/require.min.js'
+				dest: 'dist/require.min.js'
 			}
 		},
 		karma: {
@@ -44,34 +44,6 @@ module.exports = function (grunt) {
 				logLevel: 'DEBUG'
 			}
 		},
-		mochaTest: {
-			unit: {
-				options: {
-					reporter: 'spec'
-				},
-				src: ['backend/test/**/*.js']
-			}
-		},
-		protractor: {
-			options: {
-				configFile: 'protractor.conf.js',
-				args: {
-					params: {
-						port: '<%= connect.test.options.port %>'
-					}
-				}
-			},
-			e2e: {
-				options: {
-					keepAlive: true
-				}
-			},
-			manual: {
-				options: {
-					debug: true
-				}
-			}
-		},
 		jshint: {
 			gruntfile: {
 				options: {
@@ -79,31 +51,13 @@ module.exports = function (grunt) {
 				},
 				src: 'Gruntfile.js'
 			},
-			frontend_app: {
+			app: {
 				options: {
-					jshintrc: 'frontend/app/.jshintrc'
+					jshintrc: 'app/.jshintrc'
 				},
-				src: ['frontend/app/**/*.js']
+				src: ['app/**/*.js']
 			},
-			frontend_test: {
-				options: {
-					jshintrc: 'frontend/test/.jshintrc'
-				},
-				src: ['frontend/test/**/*.js']
-			},
-			backend_app: {
-				options: {
-					jshintrc: '.jshintrc'
-				},
-				src: ['backend/app/**/*.js']
-			},
-			backend_test: {
-				options: {
-					jshintrc: 'backend/test/.jshintrc'
-				},
-				src: ['backend/test/**/*.js']
-			},
-			e2e_test: {
+			test: {
 				options: {
 					jshintrc: 'test/.jshintrc'
 				},
@@ -115,32 +69,20 @@ module.exports = function (grunt) {
 				files: 'Gruntfile.js',
 				tasks: ['jshint:gruntfile']
 			},
-			frontend_app: {
-				files: ['frontend/app/**/*.js'],
-				tasks: ['jshint:frontend_app', 'karma:unit', 'connect:test', 'protractor:e2e']
+			app: {
+				files: ['app/**/*.js'],
+				tasks: ['jshint:app', 'karma:unit', 'connect:test']
 			},
-			frontend_test: {
-				files: ['frontend/test/**/*.js'],
-				tasks: ['jshint:frontend_test', 'karma:unit']
-			},
-			backend_app: {
-				files: ['backend/app/**/*.js'],
-				tasks: ['jshint:backend', 'mochaTest:unit', 'connect:test', 'protractor:e2e']
-			},
-			backend_test: {
-				files: ['backend/test/**/*.js'],
-				tasks: ['jshint:backend_test', 'mochaTest:unit']
-			},
-			e2e_test: {
+			test: {
 				files: ['test/**/*.js'],
-				tasks: ['jshint:e2e_test', 'connect:test', 'protractor:e2e']
+				tasks: ['jshint:test', 'karma:unit']
 			}
 		},
 		requirejs: {
 			compile: {
 				options: {
 					name: 'main',
-					mainConfigFile: 'frontend/app/main.js',
+					mainConfigFile: 'app/main.js',
 					out: '<%= concat.dist.dest %>',
 					optimize: 'none'
 				}
@@ -149,21 +91,21 @@ module.exports = function (grunt) {
 		connect: {
 			test: {
 				options: {
-					base: 'frontend/',
+					base: '.',
 					port: 8001,
 					middleware: '<%= connect.production.options.middleware %>'
 				}
 			},
 			development: {
 				options: {
-					base: 'frontend/',
+					base: '.',
 					port: '<%= connect.production.options.port %>',
 					keepalive: true
 				}
 			},
 			production: {
 				options: {
-					base: 'frontend/',
+					base: '.',
 					keepalive: true,
 					port: 8000,
 					middleware: function (connect, options) {
@@ -182,7 +124,7 @@ module.exports = function (grunt) {
 			},
 			coverage: {
 				options:{
-					base: 'frontend/coverage/',
+					base: 'coverage/',
 					port: 8002,
 					keepalive: true
 				}
@@ -208,13 +150,11 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-contrib-connect');
 	grunt.loadNpmTasks('grunt-open');
 	grunt.loadNpmTasks('grunt-karma');
-	grunt.loadNpmTasks('grunt-mocha-test');
-	grunt.loadNpmTasks('grunt-protractor-runner');
 
 	// Default task.
-	grunt.registerTask('default', ['jshint', 'mochaTest:unit', 'karma:unit', 'clean', 'requirejs', 'concat', 'uglify', 'connect:test', 'protractor:e2e']);
+	grunt.registerTask('default', ['jshint', 'karma:unit', 'clean', 'requirejs', 'concat', 'uglify']);
 	grunt.registerTask('preview', ['open:preview', 'connect:development']);
 	grunt.registerTask('preview-live', ['default', 'open:preview', 'connect:production']);
-	grunt.registerTask('test', ['mochaTest:unit', 'karma:manual', 'connect:test', 'protractor:manual']);
+	grunt.registerTask('test', ['karma:manual']);
 	grunt.registerTask('coverage', ['open:coverage', 'connect:coverage']);
 };

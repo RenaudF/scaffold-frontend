@@ -28,7 +28,7 @@ define(['chai', 'libs/q/q'], function (chai, q) {
 		});
 		it('should find dependencies', function(done){
 			// using promise syntax
-			q.promise(function(resolve, reject, notify){
+			q.promise(function(resolve){
 				require(['libs/d3/d3'], function(d3){
 					resolve(d3);
 				});

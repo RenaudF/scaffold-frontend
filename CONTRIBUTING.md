@@ -1,7 +1,7 @@
 # Contributing
 
 ## Important notes
-Please don't edit files in the `frontend/dist` subdirectory as they are generated via Grunt. You'll find source code in the `frontend/app` subdirectory!
+Please don't edit files in the `dist` directory as they are generated via Grunt. You'll find source code in the `app` folder!
 
 ### Code style
 Regarding code style like indentation and whitespace, **follow the conventions you see used in the source already** (should be tabs in .js files, 2 spaces in .json). Do not commit commented out code. Write comments where appropriate.
